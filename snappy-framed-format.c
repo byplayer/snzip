@@ -57,6 +57,8 @@ static int snappy_framed_format_compress(FILE *infp, FILE *outfp, size_t block_s
   char *compressed_data = malloc(max_compressed_data_len);
   int err = 1;
 
+  crc32c_init();
+
   if (uncompressed_data == NULL || compressed_data == NULL) {
     print_error("out of memory\n");
     goto cleanup;
@@ -164,6 +166,8 @@ static int snappy_framed_format_uncompress(FILE *infp, FILE *outfp, int skip_mag
   char *data = malloc(max_data_len);
   char *uncompressed_data = malloc(max_uncompressed_data_len);
   int err = 1;
+
+  crc32c_init();
 
   if (data == NULL || uncompressed_data == NULL) {
     print_error("out of memory\n");

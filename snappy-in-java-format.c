@@ -65,6 +65,8 @@ static int snappy_in_java_compress(FILE *infp, FILE *outfp, size_t block_size)
   size_t uncompressed_length;
   int err = 1;
 
+  crc32c_init();
+
   wb.c = NULL;
   wb.uc = NULL;
 
@@ -149,6 +151,8 @@ static int snappy_in_java_uncompress(FILE *infp, FILE *outfp, int skip_magic)
   work_buffer_t wb;
   int err = 1;
   int outfd;
+
+  crc32c_init();
 
   wb.c = NULL;
   wb.uc = NULL;

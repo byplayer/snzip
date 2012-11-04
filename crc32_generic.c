@@ -43,8 +43,11 @@
  *
  * CRC32 code derived from work by Gary S. Brown.
  */
-#include <stdlib.h>
+#ifdef HAVE_CONFIG_H
 #include "config.h"
+#endif
+
+#include <stdlib.h>
 #include "crc32.h"
 
 uint32_t crc32_tab[] = {
@@ -744,7 +747,7 @@ multitable_crc32c(uint32_t crc32c,
 }
 
 uint32_t
-calculate_crc32c(uint32_t crc32c,
+calculate_crc32c_generic(uint32_t crc32c,
     const unsigned char *buffer,
     unsigned int length)
 {

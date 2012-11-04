@@ -80,6 +80,8 @@ static int comment_43_compress(FILE *infp, FILE *outfp, size_t block_size)
   char *compressed_data = malloc(max_compressed_data_len);
   int err = 1;
 
+  crc32c_init();
+
   if (raw_data == NULL || compressed_data == NULL) {
     print_error("out of memory\n");
     goto cleanup;
@@ -155,6 +157,8 @@ static int comment_43_uncompress(FILE *infp, FILE *outfp, int skip_magic)
   char *work = malloc(work_len);
   int err = 1;
   stream_state_t state = skip_magic ? PROCESSING_STATE : INITIAL_STATE;
+
+  crc32c_init();
 
   if (block_data == NULL || work == NULL) {
     print_error("out of memory\n");
